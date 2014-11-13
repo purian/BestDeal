@@ -4,6 +4,7 @@
   <title>BestDeal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css", :media => "all" %>
   <%= content_for?(:styles) ? yield(:styles) : '' %>
   <%= csrf_meta_tags %>
 </head>
@@ -14,6 +15,8 @@
 
 
 <%= javascript_include_tag "application" %>
+<%= javascript_include_tag "//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" %>
+<%= javascript_include_tag "//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.js" %>
 <%= content_for?(:scripts) ? yield(:scripts) : '' %>
 </body>
 </html>

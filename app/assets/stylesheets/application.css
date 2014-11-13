@@ -13,3 +13,10 @@
  *= require_self
  *= require_tree .
  */
+
+.filters {
+    height: 50px;
+}
+.v-space20 {
+    height: 20px;
+}
