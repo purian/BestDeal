@@ -2,13 +2,18 @@
 <html>
 <head>
   <title>BestDeal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= content_for?(:styles) ? yield(:styles) : '' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+
 <%= yield %>
 
+
+<%= javascript_include_tag "application" %>
+<%= content_for?(:scripts) ? yield(:scripts) : '' %>
 </body>
 </html>

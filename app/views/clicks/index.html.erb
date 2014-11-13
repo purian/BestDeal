@@ -1,0 +1,29 @@
+<table>
+  <thead>
+  <tr>
+    <th>Clicks</th>
+    <!--<th>Ip</th>-->
+    <th>Create Date</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <%- @offers.each do |offer| %>
+      <tr>
+        <td>
+          <%= offer.clicks.count %>
+        </td>
+        <td>
+          <%#= offer.ip %>
+        </td>
+        <td>
+          <%= offer.created_at %>
+        </td>
+      </tr>
+
+  <%- end %>
+
+  </tbody>
+
+
+</table>
