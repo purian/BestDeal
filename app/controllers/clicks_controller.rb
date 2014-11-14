@@ -2,10 +2,12 @@ class ClicksController < ApplicationController
 
   def index
 
-    if params[:month_scope].nil?
+    if params[:months_scope].nil?
+      get_clicks_by_scope(1.months.ago) #default scope - one month
+    elsif params[:months_scope] == '0'     #not scoped
       get_clicks
     else
-      get_clicks_by_scope(params[:month_scope].to_i.months.ago)
+      get_clicks_by_scope(params[:months_scope].to_i.months.ago)
     end
 
   end

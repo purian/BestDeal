@@ -7,13 +7,13 @@
               <div class="col-md-8">
                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                   <div class="btn-group" role="group">
-                    <%= link_to 'One month', clicks_path(month_scope: 1), class: 'btn  btn-default' %>
+                    <%= link_to 'One month', clicks_path(months_scope: 1), class: 'btn  btn-default' %>
                   </div>
                   <div class="btn-group" role="group">
-                    <%= link_to 'Two month', clicks_path(month_scope: 2), class: 'btn  btn-default' %>
+                    <%= link_to 'Two month', clicks_path(months_scope: 2), class: 'btn  btn-default' %>
                   </div>
                   <div class="btn-group" role="group">
-                    <%= link_to 'Three month', clicks_path(month_scope: 3), class: 'btn  btn-default' %>
+                    <%= link_to 'Three month', clicks_path(months_scope: 3), class: 'btn  btn-default' %>
                   </div>
                 </div>
               </div>
@@ -66,7 +66,7 @@
               </tbody>
             </table>
           </div>
-          <div class="panel-footer"><%= statistics_days(params[:month_scope]) %></div>
+          <div class="panel-footer"><%= statistics_days(params[:months_scope]) %></div>
         </div>
 
       </div>
@@ -108,7 +108,17 @@
               </tbody>
             </table>
           </div>
-          <div class="panel-footer"><%= statistics_days(params[:month_scope]) %></div>
+          <div class="panel-footer"><%= statistics_days(params[:months_scope]) %></div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <%= link_to 'All Clicks', clicks_path(months_scope: 0), class: 'btn btn-block  btn-default' %>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+  <div class="v-space20"></div>
 </div>
