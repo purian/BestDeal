@@ -6,6 +6,8 @@ class Offer < ActiveRecord::Base
 
   validates_uniqueness_of :token
 
+  scope :by_clicks_created_between, lambda {|start_date, end_date| includes(:clicks).where({:clicks => {created_at: start_date..end_date}})}
+
   protected
 
   def generate_token
