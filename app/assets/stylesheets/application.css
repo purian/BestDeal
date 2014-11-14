@@ -15,7 +15,8 @@
  */
 
 .filters {
-    height: 50px;
+    margin-top: 2em;
+    margin-bottom: 1em;
 }
 .v-space20 {
     height: 20px;
