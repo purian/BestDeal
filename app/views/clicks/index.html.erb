@@ -2,13 +2,29 @@
       <div class="row">
         <div class="filters">
           <div class="row">
-            <div class=""></div>
+            <div class="col-md-12">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                  <div class="btn-group" role="group">
+                    <%= link_to 'One month', clicks_path(month_scope: 1), class: 'btn  btn-default' %>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <%= link_to 'Two month', clicks_path(month_scope: 2), class: 'btn  btn-default' %>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <%= link_to 'Three month', clicks_path(month_scope: 3), class: 'btn  btn-default' %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
           </div>
         </div>
         <div class="panel panel-success">
           <div class="panel-heading"><h4>Clicks by Offer</h4></div>
           <div class="panel-body">
-            <table id="clicks_by_offers_tbl" class="table table-striped table-hover table-bordered">
+            <table id="clicks_by_offers_tbl" class="table table-striped table-hover table-bordered table-responsive">
               <thead class="">
               <tr>
                 <th>Offer</th>
@@ -41,7 +57,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                      <%= offer.created_at %>
+                      <%#= offer.created_at %>
                     </td>
                   </tr>
 
@@ -50,7 +66,7 @@
               </tbody>
             </table>
           </div>
-          <div class="panel-footer">Last 30 days statistics</div>
+          <div class="panel-footer"><%= statistics_days(params[:month_scope]) %></div>
         </div>
 
       </div>
@@ -59,40 +75,31 @@
         <div class="panel panel-info">
           <div class="panel-heading"><h4>Clicks by Traffic Source</h4></div>
           <div class="panel-body">
-            <table id="clicks_by_tSource_tbl" class="table table-striped table-hover table-bordered">
+            <table id="clicks_by_tSource_tbl" class="table table-striped table-hover table-bordered table-responsive">
               <thead class="">
               <tr>
-                <th>Offer</th>
+                <th>Traffic Source</th>
                 <th>Clicks</th>
                 <th>Reservations</th>
                 <th>Checkouts</th>
-                <th>Total Payout</th>
                 <th>Affiliate Payout</th>
-                <th>Better</th>
-                <th>Cheaper</th>
-                <th>Closer</th>
-                <th>Create Date</th>
+                <th>Date</th>
               </tr>
               </thead>
               <tbody>
 
-              <%- @offers.each do |offer| %>
+              <% @sources.each do |traffic_source, click|%>
                   <tr>
                     <td>
-                      <%= offer.name %>
+                      <%= traffic_source %>
                     </td>
                     <td>
-                      <%= offer.clicks.count %>
+                      <%=  click.count %>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td>
-                      <%= offer.created_at %>
                     </td>
                   </tr>
 
@@ -101,7 +108,7 @@
               </tbody>
             </table>
           </div>
-          <div class="panel-footer">Last 30 days statistics</div>
+          <div class="panel-footer"><%= statistics_days(params[:month_scope]) %></div>
         </div>
       </div>
 </div>
