@@ -1,10 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def get_host_from_uri
-    require 'uri'
-    uri = URI.parse @_request.env["HTTP_REFERER"]
-    host = uri.host
-    return host
+  def get_traffic_source_from_request
+    (URI.parse @_request.env["HTTP_REFERER"]).host
   end
 end
