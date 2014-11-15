@@ -16,7 +16,7 @@ class ClicksController < ApplicationController
   def show
 
     @offer = Offer.find_by_token(params[:token])
-    Click.create!(:offer_id => @offer.id, :ip => request.remote_ip, :traffic_source => "localhost")
+    Click.create!(:offer_id => @offer.id, :ip => request.remote_ip, :traffic_source => get_host_from_uri)
 
     redirect_to :back
 
