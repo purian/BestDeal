@@ -1,15 +1,7 @@
 class ClicksController < ApplicationController
 
   def index
-
-    if params[:months_scope].nil?
-      get_clicks_by_scope(1.months.ago) #default scope - one month
-    elsif params[:months_scope] == '0'     #not scoped
-      get_clicks
-    else
-      get_clicks_by_scope(params[:months_scope].to_i.months.ago)
-    end
-
+    get_clicks(params[:months_scope])
   end
 
 
@@ -24,13 +16,16 @@ class ClicksController < ApplicationController
 
   private
 
-  def get_clicks_by_scope(scope)
-    @offers = Offer.by_clicks_created_between(scope, Time.now)
-    @sources = Click.created_between(scope, Time.now).group_by(&:traffic_source)
-  end
-
-  def get_clicks
-    @offers = Offer.all
-    @sources = Click.all.group_by(&:traffic_source)
+  def get_clicks(scope)
+    if scope.nil?       #default scope - one month
+      @offers = Offer.by_clicks_created_between(1.months.ago, Time.now)
+      @sources = Click.created_between(1.months.ago, Time.now).group_by(&:traffic_source)
+    elsif scope == '0'  #not scoped
+      @offers = Offer.all
+      @sources = Click.all.group_by(&:traffic_source)
+    else
+      @offers = Offer.by_clicks_created_between(scope.to_i.months.ago, Time.now)
+      @sources = Click.created_between(scope.to_i.months.ago, Time.now).group_by(&:traffic_source)
+    end
   end
 end
