@@ -12,4 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require_tree .
+
+
+$(document).ready(function() {
+    $('#clicks_by_offers_tbl').dataTable();
+    $('#clicks_by_tSource_tbl').dataTable();
+} );

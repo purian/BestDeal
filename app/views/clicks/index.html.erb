@@ -1,29 +1,124 @@
-<table>
-  <thead>
-  <tr>
-    <th>Clicks</th>
-    <!--<th>Ip</th>-->
-    <th>Create Date</th>
-  </tr>
-  </thead>
-  <tbody>
+<div class="container">
+      <div class="row">
+        <div class="filters">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                  <div class="btn-group" role="group">
+                    <%= link_to 'One month', clicks_path(months_scope: 1), class: 'btn  btn-default' %>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <%= link_to 'Two month', clicks_path(months_scope: 2), class: 'btn  btn-default' %>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <%= link_to 'Three month', clicks_path(months_scope: 3), class: 'btn  btn-default' %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-success">
+          <div class="panel-heading"><h4>Offer Clicks</h4></div>
+          <div class="panel-body">
+            <table id="clicks_by_offers_tbl" class="table table-striped table-hover table-bordered table-responsive">
+              <thead class="">
+              <tr>
+                <th>Offer</th>
+                <th>Clicks</th>
+                <th>Reservations</th>
+                <th>Checkouts</th>
+                <th>Total Payout</th>
+                <th>Affiliate Payout</th>
+                <th>Better</th>
+                <th>Cheaper</th>
+                <th>Closer</th>
+                <th>Create Date</th>
+              </tr>
+              </thead>
+              <tbody>
 
-  <%- @offers.each do |offer| %>
-      <tr>
-        <td>
-          <%= offer.clicks.count %>
-        </td>
-        <td>
-          <%#= offer.ip %>
-        </td>
-        <td>
-          <%= offer.created_at %>
-        </td>
-      </tr>
+              <%- @offers.each do |offer| %>
+                  <tr>
+                    <td>
+                      <%= offer.name %>
+                    </td>
+                    <td>
+                      <%= offer.clicks.count %>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <%#= offer.created_at %>
+                    </td>
+                  </tr>
 
-  <%- end %>
+              <%- end %>
 
-  </tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="panel-footer"><%= statistics_days(params[:months_scope]) %></div>
+        </div>
 
+      </div>
+        <div class="v-space20"></div>
+      <div class="row">
+        <div class="panel panel-info">
+          <div class="panel-heading"><h4>Traffic Source Clicks</h4></div>
+          <div class="panel-body">
+            <table id="clicks_by_tSource_tbl" class="table table-striped table-hover table-bordered table-responsive">
+              <thead class="">
+              <tr>
+                <th>Traffic Source</th>
+                <th>Clicks</th>
+                <th>Reservations</th>
+                <th>Checkouts</th>
+                <th>Affiliate Payout</th>
+                <th>Date</th>
+              </tr>
+              </thead>
+              <tbody>
 
-</table>
+              <% @sources.each do |traffic_source, click|%>
+                  <tr>
+                    <td>
+                      <%= traffic_source %>
+                    </td>
+                    <td>
+                      <%=  click.count %>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                    </td>
+                  </tr>
+
+              <%- end %>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="panel-footer"><%= statistics_days(params[:months_scope]) %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <%= link_to 'All Clicks', clicks_path(months_scope: 0), class: 'btn btn-block  btn-default' %>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+  <div class="v-space20"></div>
+</div>
