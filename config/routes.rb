@@ -1,5 +1,11 @@
 BestDeal::Application.routes.draw do
 
+  namespace :api do
+    namespace :v1 do
+      resources :offers, except: [:new, :edit]
+    end
+  end
+
   resources :offers, except: [:new, :edit]
 
   match 'clicks/:token' => 'clicks#show'
