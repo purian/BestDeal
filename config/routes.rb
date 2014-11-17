@@ -6,8 +6,6 @@ BestDeal::Application.routes.draw do
     end
   end
 
-  resources :offers, except: [:new, :edit]
-
   match 'clicks/:token' => 'clicks#show'
   match 'clicks' => 'clicks#index'
 
